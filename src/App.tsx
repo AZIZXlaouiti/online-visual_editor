@@ -11,9 +11,10 @@ import { CodeAlt } from '@styled-icons/boxicons-regular/CodeAlt'
 import { FormatItalic } from '@styled-icons/material/FormatItalic'
 import { FormatUnderlined } from '@styled-icons/material/FormatUnderlined'
 import { FormatStrikethrough } from '@styled-icons/material';
+import { Highlight } from '@styled-icons/material';
 import { CodeBlock } from '@styled-icons/boxicons-regular/CodeBlock'
 import { HeadingToolbar , BlockToolbarButton ,MarkToolbarButton, getPlatePluginType , ListToolbarButton } from '@udecode/plate';
-import { ELEMENT_H1, ELEMENT_PARAGRAPH, MARK_STRIKETHROUGH, MARK_UNDERLINE, MARK_CODE, ELEMENT_H2, MARK_BOLD, MARK_ITALIC, ELEMENT_BLOCKQUOTE } from '@udecode/plate'
+import { ELEMENT_H1,MARK_HIGHLIGHT, ELEMENT_PARAGRAPH, MARK_STRIKETHROUGH, MARK_UNDERLINE, MARK_CODE, ELEMENT_H2, MARK_BOLD, MARK_ITALIC, ELEMENT_BLOCKQUOTE } from '@udecode/plate'
 const socket = io('http://localhost:4000')
 const editableProps = {
   placeholder: 'Type…',
@@ -120,6 +121,10 @@ const createElement = (
           type={getPlatePluginType(editor, MARK_STRIKETHROUGH)}
           icon={<FormatStrikethrough />}
         />
+         <MarkToolbarButton
+        type={getPlatePluginType(editor, MARK_HIGHLIGHT)}
+        icon={<Highlight />}
+      />
        </HeadingToolbar>
       <Plate
         id="1"
