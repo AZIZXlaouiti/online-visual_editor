@@ -1,20 +1,11 @@
-import { createBlockquotePlugin, createBoldPlugin, createCodeBlockPlugin, createCodePlugin, createHeadingPlugin, createHighlightPlugin, createItalicPlugin, createParagraphPlugin, createReactPlugin, createStrikethroughPlugin, createUnderlinePlugin, Plate, usePlateEditorRef } from '@udecode/plate'
-import { createPlateOptions } from '@udecode/plate';
+import { createPlateOptions} from '@udecode/plate';
 import { createPlateComponents } from '@udecode/plate';
-import React, { useMemo, useState , useRef, useEffect} from 'react'
-import { createEditor, BaseEditor, Descendant, Operation } from 'slate'
-import { Slate, Editable, withReact, ReactEditor } from 'slate-react'
-import { HistoryEditor } from 'slate-history'
 import io from 'socket.io-client'
-import { FormatBold } from '@styled-icons/material';
-import { CodeAlt } from '@styled-icons/boxicons-regular/CodeAlt'
-import { FormatItalic } from '@styled-icons/material/FormatItalic'
-import { FormatUnderlined } from '@styled-icons/material/FormatUnderlined'
-import { FormatStrikethrough } from '@styled-icons/material';
-import { Highlight } from '@styled-icons/material';
-import { CodeBlock } from '@styled-icons/boxicons-regular/CodeBlock'
-import { HeadingToolbar , BlockToolbarButton ,MarkToolbarButton, getPlatePluginType , ListToolbarButton } from '@udecode/plate';
-import { ELEMENT_H1,MARK_HIGHLIGHT, ELEMENT_PARAGRAPH, MARK_STRIKETHROUGH, MARK_UNDERLINE, MARK_CODE, ELEMENT_H2, MARK_BOLD, MARK_ITALIC, ELEMENT_BLOCKQUOTE } from '@udecode/plate'
+import { basicNodesPlugins } from './config/config';
+import { Toolbar } from './config/Toolbar';
+import { HeadingToolbar  , Plate} from '@udecode/plate';
+import { ELEMENT_H1, ELEMENT_PARAGRAPH, MARK_STRIKETHROUGH, MARK_UNDERLINE, MARK_CODE, ELEMENT_H2, MARK_BOLD, MARK_ITALIC, ELEMENT_BLOCKQUOTE } from '@udecode/plate'
+import { createElement } from './config/config';
 const socket = io('http://localhost:4000')
 const editableProps = {
   placeholder: 'Type…',
@@ -22,44 +13,10 @@ const editableProps = {
     padding: '15px',
   },
 };
-const createElement = (
-  text = '',
-  {
-    type = ELEMENT_PARAGRAPH,
-    mark,
-  }: {
-    type?: string;
-    mark?: string;
-  } = {}
-  ) => {
-    const leaf = { text };
-    // if (mark) {
-        // leaf[mark] = true;
-    //   }
-      
-      return {
-        type,
-        children: [leaf],
-      };
-    };
+
     const components = createPlateComponents()
     const options = createPlateOptions()
-    const basicNodesPlugins = [
-      // editor
-      createReactPlugin(),
-      createHighlightPlugin(),
-      // elements
-      createParagraphPlugin(),      // paragraph element
-      createBlockquotePlugin(),     // blockquote element
-      createCodeBlockPlugin(),      // code block element
-      createHeadingPlugin(),        // heading elements
-      // marks
-      createBoldPlugin(),           // bold mark
-      createItalicPlugin(),         // italic mark
-      createUnderlinePlugin(),      // underline mark
-      createStrikethroughPlugin(),  // strikethrough mark
-      createCodePlugin()            // code mark
-    ]
+ 
     const basicNodesInitialValue = [
       createElement('🧱 Elements', { type: ELEMENT_H1 }),
       createElement('🔥 Basic Elements', { type: ELEMENT_H2 }),
@@ -86,45 +43,12 @@ const createElement = (
       createElement('This is an inline code.', { mark: MARK_CODE }),
     ]
     const  App =() =>{
-      const editor  = usePlateEditorRef()
       return (
         <div
         className="editor container"
         >
        <HeadingToolbar>
-        
-      <BlockToolbarButton
-        type={getPlatePluginType(editor, ELEMENT_H1)}
-        icon={<>H1</>}
-      />
-      <BlockToolbarButton
-        type={getPlatePluginType(editor, ELEMENT_H2)}
-        icon={<>H2</>}
-      />
-       <MarkToolbarButton
-          type={getPlatePluginType(editor, MARK_BOLD)}
-          icon={<FormatBold/>}
-        />
-         <MarkToolbarButton
-          type={getPlatePluginType(editor, MARK_ITALIC)}
-          icon={<FormatItalic/>}
-        />
-          <MarkToolbarButton
-          type={getPlatePluginType(editor, MARK_UNDERLINE)}
-          icon={<FormatUnderlined/>}
-        />
-         <MarkToolbarButton
-          type={getPlatePluginType(editor, MARK_CODE)}
-          icon={<CodeAlt/>}
-        />
-         <MarkToolbarButton
-          type={getPlatePluginType(editor, MARK_STRIKETHROUGH)}
-          icon={<FormatStrikethrough />}
-        />
-         <MarkToolbarButton
-        type={getPlatePluginType(editor, MARK_HIGHLIGHT)}
-        icon={<Highlight />}
-      />
+        <Toolbar/>
        </HeadingToolbar>
       <Plate
         id="1"
