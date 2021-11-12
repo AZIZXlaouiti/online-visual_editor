@@ -6,6 +6,7 @@ import { createEditor, BaseEditor, Descendant, Operation } from 'slate'
 import { Slate, Editable, withReact, ReactEditor } from 'slate-react'
 import { HistoryEditor } from 'slate-history'
 import io from 'socket.io-client'
+import { FormatBold } from '@styled-icons/material';
 import { CodeAlt } from '@styled-icons/boxicons-regular/CodeAlt'
 import { FormatItalic } from '@styled-icons/material/FormatItalic'
 import { FormatUnderlined } from '@styled-icons/material/FormatUnderlined'
@@ -100,7 +101,7 @@ const createElement = (
       />
        <MarkToolbarButton
           type={getPlatePluginType(editor, MARK_BOLD)}
-          icon={<>B</>}
+          icon={<FormatBold/>}
         />
          <MarkToolbarButton
           type={getPlatePluginType(editor, MARK_ITALIC)}
