@@ -4,8 +4,7 @@ import io from 'socket.io-client'
 import { basicNodesPlugins } from './config/config';
 import { Toolbar } from './config/Toolbar';
 import { HeadingToolbar  , Plate} from '@udecode/plate';
-import { ELEMENT_H1, ELEMENT_PARAGRAPH, MARK_STRIKETHROUGH, MARK_UNDERLINE, MARK_CODE, ELEMENT_H2, MARK_BOLD, MARK_ITALIC, ELEMENT_BLOCKQUOTE } from '@udecode/plate'
-import { createElement } from './config/config';
+import { basicNodesInitialValue } from './config/config';
 const socket = io('http://localhost:4000')
 const editableProps = {
   placeholder: 'Type…',
@@ -17,31 +16,7 @@ const editableProps = {
     const components = createPlateComponents()
     const options = createPlateOptions()
  
-    const basicNodesInitialValue = [
-      createElement('🧱 Elements', { type: ELEMENT_H1 }),
-      createElement('🔥 Basic Elements', { type: ELEMENT_H2 }),
-      createElement('Blockquote', { type: ELEMENT_BLOCKQUOTE }),
-      createElement('This text is bold.', { mark: MARK_BOLD }),
-      createElement('This text is italic.', { mark: MARK_ITALIC }),
-      createElement('This text is underlined.', {
-        mark: MARK_UNDERLINE,
-      }),
-      {
-        type: ELEMENT_PARAGRAPH,
-        children: [
-          {
-            text: 'This text is bold, italic and underlined.',
-           
-            [MARK_ITALIC]: true,
-            [MARK_UNDERLINE]: true,
-          },
-        ],
-      },
-      createElement('This is a strikethrough text.', {
-        mark: MARK_STRIKETHROUGH,
-      }),
-      createElement('This is an inline code.', { mark: MARK_CODE }),
-    ]
+  
     const  App: React.FC =() =>{
       return (
         <div

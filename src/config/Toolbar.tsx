@@ -14,15 +14,16 @@ export const Toolbar: React.FC = () => {
 
   return (
     <>
+    
 
 
       <BlockToolbarButton
         type={getPlatePluginType(editor, ELEMENT_H1)}
-        icon={<>H1</>}
+        icon={<>h1</>}
       />
       <BlockToolbarButton
         type={getPlatePluginType(editor, ELEMENT_H2)}
-        icon={<>H2</>}
+        icon={<>h2</>}
       />
       <MarkToolbarButton
         type={getPlatePluginType(editor, MARK_BOLD)}
@@ -36,7 +37,7 @@ export const Toolbar: React.FC = () => {
         type={getPlatePluginType(editor, MARK_UNDERLINE)}
         icon={<FormatUnderlined />}
       />
-      <MarkToolbarButton
+      <MarkToolbarButton 
         type={getPlatePluginType(editor, MARK_CODE)}
         icon={<CodeAlt />}
       />
