@@ -6,6 +6,10 @@ import { createEditor, BaseEditor, Descendant, Operation } from 'slate'
 import { Slate, Editable, withReact, ReactEditor } from 'slate-react'
 import { HistoryEditor } from 'slate-history'
 import io from 'socket.io-client'
+import { CodeAlt } from '@styled-icons/boxicons-regular/CodeAlt'
+import { FormatItalic } from '@styled-icons/material/FormatItalic'
+import { FormatUnderlined } from '@styled-icons/material/FormatUnderlined'
+import { CodeBlock } from '@styled-icons/boxicons-regular/CodeBlock'
 import { HeadingToolbar , BlockToolbarButton ,MarkToolbarButton, getPlatePluginType , ListToolbarButton } from '@udecode/plate';
 import { ELEMENT_H1, ELEMENT_PARAGRAPH, MARK_STRIKETHROUGH, MARK_UNDERLINE, MARK_CODE, ELEMENT_H2, MARK_BOLD, MARK_ITALIC, ELEMENT_BLOCKQUOTE } from '@udecode/plate'
 const socket = io('http://localhost:4000')
@@ -85,9 +89,7 @@ const createElement = (
         className="editor container"
         >
        <HeadingToolbar>
-       <ListToolbarButton
-        icon={<>tool</>}
-       />
+        
       <BlockToolbarButton
         type={getPlatePluginType(editor, ELEMENT_H1)}
         icon={<>H1</>}
@@ -99,6 +101,18 @@ const createElement = (
        <MarkToolbarButton
           type={getPlatePluginType(editor, MARK_BOLD)}
           icon={<>B</>}
+        />
+         <MarkToolbarButton
+          type={getPlatePluginType(editor, MARK_ITALIC)}
+          icon={<FormatItalic/>}
+        />
+          <MarkToolbarButton
+          type={getPlatePluginType(editor, MARK_UNDERLINE)}
+          icon={<FormatUnderlined/>}
+        />
+         <MarkToolbarButton
+          type={getPlatePluginType(editor, MARK_CODE)}
+          icon={<CodeAlt/>}
         />
        </HeadingToolbar>
       <Plate
