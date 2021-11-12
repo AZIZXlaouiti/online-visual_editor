@@ -9,7 +9,7 @@ const io = require("socket.io")(http , {
     }
   })
 io.on('connection', async(socket) => {
- 
+    console.log("user connected")
     socket.on('new-operations', (msg) => {
     socket.broadcast.emit('new-remote-operations', msg);
     });
