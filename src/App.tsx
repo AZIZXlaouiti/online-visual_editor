@@ -6,7 +6,7 @@ import { createEditor, BaseEditor, Descendant, Operation } from 'slate'
 import { Slate, Editable, withReact, ReactEditor } from 'slate-react'
 import { HistoryEditor } from 'slate-history'
 import io from 'socket.io-client'
-import { HeadingToolbar , BlockToolbarButton , getPlatePluginType} from '@udecode/plate';
+import { HeadingToolbar , BlockToolbarButton ,MarkToolbarButton, getPlatePluginType , ListToolbarButton } from '@udecode/plate';
 import { ELEMENT_H1, ELEMENT_PARAGRAPH, MARK_STRIKETHROUGH, MARK_UNDERLINE, MARK_CODE, ELEMENT_H2, MARK_BOLD, MARK_ITALIC, ELEMENT_BLOCKQUOTE } from '@udecode/plate'
 const socket = io('http://localhost:4000')
 const editableProps = {
@@ -27,8 +27,8 @@ const createElement = (
   ) => {
     const leaf = { text };
     // if (mark) {
-      //   leaf[mark] = true;
-      // }
+    //     leaf[mark] = true;
+    //   }
       
       return {
         type,
@@ -67,7 +67,7 @@ const createElement = (
         children: [
           {
             text: 'This text is bold, italic and underlined.',
-            [MARK_BOLD]: true,
+           
             [MARK_ITALIC]: true,
             [MARK_UNDERLINE]: true,
           },
@@ -85,6 +85,9 @@ const createElement = (
         className="editor container"
         >
        <HeadingToolbar>
+       <ListToolbarButton
+        icon={<>tool</>}
+       />
       <BlockToolbarButton
         type={getPlatePluginType(editor, ELEMENT_H1)}
         icon={<>H1</>}
@@ -93,6 +96,10 @@ const createElement = (
         type={getPlatePluginType(editor, ELEMENT_H2)}
         icon={<>H2</>}
       />
+       <MarkToolbarButton
+          type={getPlatePluginType(editor, MARK_BOLD)}
+          icon={<>B</>}
+        />
        </HeadingToolbar>
       <Plate
         id="1"
