@@ -9,7 +9,7 @@ import { FormatStrikethrough } from '@styled-icons/material';
 import { Highlight } from '@styled-icons/material';
 import { FormatQuote } from '@styled-icons/material';
 
-export const Toolbar = () => {
+export const Toolbar: React.FC = () => {
   const editor = usePlateEditorRef()
 
   return (

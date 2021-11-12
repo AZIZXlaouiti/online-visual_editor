@@ -42,7 +42,7 @@ const editableProps = {
       }),
       createElement('This is an inline code.', { mark: MARK_CODE }),
     ]
-    const  App =() =>{
+    const  App: React.FC =() =>{
       return (
         <div
         className="editor container"
