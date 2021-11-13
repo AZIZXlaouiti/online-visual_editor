@@ -37,28 +37,71 @@ export const createElement = (
         children: [leaf],
     };
 };  
-export const basicNodesInitialValue = [
-    createElement('🧱 Elements', { type: ELEMENT_H1 }),
-    createElement('🔥 Basic Elements', { type: ELEMENT_H2 }),
-    createElement('Blockquote', { type: ELEMENT_BLOCKQUOTE }),
-    createElement('This text is bold.', { mark: MARK_BOLD }),
-    createElement('This text is italic.', { mark: MARK_ITALIC }),
-    createElement('This text is underlined.', {
-      mark: MARK_UNDERLINE,
-    }),
+export const basicNodesInitialValue = 
+  [
     {
-      type: ELEMENT_PARAGRAPH,
-      children: [
-        {
-          text: 'This text is bold, italic and underlined.',
-         
-          [MARK_ITALIC]: true,
-          [MARK_UNDERLINE]: true,
-        },
-      ],
+        "type": "h1",
+        "children": [
+            {
+                "text": "🧱 Elements"
+            }
+        ]
     },
-    createElement('This is a strikethrough text.', {
-      mark: MARK_STRIKETHROUGH,
-    }),
-    createElement('This is an inline code.', { mark: MARK_CODE }),
+    {
+        "type": "h2",
+        "children": [
+            {
+                "text": "🔥"
+            },
+            {
+                "text": " Basic Elements",
+                "highlight": true
+            }
+        ]
+    },
+    {
+        "type": "blockquote",
+        "children": [
+            {
+                "text": "Blockquote"
+            }
+        ]
+    },
+    {
+        "type": "p",
+        "children": [
+            {
+                "text": "This text is bold."
+            }
+        ]
+    },
+    {
+        "type": "p",
+        "children": [
+            {
+                "text": "This text is italic.",
+                "italic": true
+            }
+        ]
+    },
+    {
+        "type": "p",
+        "children": [
+            {
+                "text": "This text is underlined.",
+                "code": true
+            }
+        ]
+    },
+    {
+        "type": "p",
+        "children": [
+            {
+                "text": "This text is bold, italic and underlined.",
+                "italic": true,
+                "underline": true
+            }
+        ]
+    }
+
   ]

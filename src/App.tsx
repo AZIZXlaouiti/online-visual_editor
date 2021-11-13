@@ -5,9 +5,12 @@ import { basicNodesPlugins } from './config/config';
 import { Toolbar } from './config/Toolbar';
 import { HeadingToolbar  , Plate} from '@udecode/plate';
 import { basicNodesInitialValue } from './config/config';
-import { useRef , useEffect } from 'react';
+import { useRef , useEffect, useState } from 'react';
 import { usePlateEditorRef } from '@udecode/plate'
-import { Operation } from 'slate';
+import { useMemo } from 'react';
+import { withReact } from 'slate-react';
+import { createEditor } from 'slate';
+import { Descendant, Operation } from 'slate';
 const socket = io('http://localhost:4000')
 const editableProps = {
   placeholder: 'Type…',
@@ -22,13 +25,13 @@ const editableProps = {
   
     const  App: React.FC =() =>{
   const editor = usePlateEditorRef()
-
+  
       // const editor = useMemo(() => withReact(createEditor()), []);
       // const [value, setValue] = useState<Descendant[]>([
       //     { type: 'paragraph',
       //      children: [{ text: '' }] 
       //   }])
-    
+      const [value , setValue ] = useState<Descendant[]>(basicNodesInitialValue)
       const id =  useRef(`${Date.now()}`)
       const remote = useRef(false)
       const socketchange = useRef(false);
@@ -40,6 +43,7 @@ const editableProps = {
           ({editorId , ops }:{editorId:string , ops: Operation[]}) => {
           if (id.current !== editorId ) {
             remote.current = true;
+            console.log("recieved", ops)
             ops.forEach((op:any) => {
               editor.apply(op);
             });
@@ -59,7 +63,29 @@ const editableProps = {
        </HeadingToolbar>
       <Plate
         id="1"
-        onChange={value => console.log(value)}
+        onChange={value => {
+          setValue(value);
+          const ops = editor.operations
+          .filter(o => {
+            if (o) {
+              return (
+                o.type !== "set_selection" 
+           
+              );
+            }
+
+            return false;
+          })
+          
+          .map((o: any) => ({ ...o, data: { source: "one" } }));
+          if (ops.length && !remote.current && !socketchange.current) {
+            socket.emit("new-operations", {
+              editorId: id.current,
+              ops,
+            });
+          }
+          socketchange.current = false;
+        }}
         initialValue={basicNodesInitialValue}
         editableProps={editableProps}
         components={components}
