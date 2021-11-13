@@ -41,19 +41,25 @@ const editableProps = {
         socket.on(
           'new-remote-operations',
           ({editorId , ops }:{editorId:string , ops: Operation[]}) => {
-          if (id.current !== editorId ) {
-            remote.current = true;
-            console.log("recieved", ops)
-            // ops.forEach((op:any) => {
-            //   editor.apply(op);
-            // });
-            remote.current = false;
-            socketchange.current = true; //variable to track socket changes in editor via operations
-          }
+           
+              if (editor && id.current !== editorId) {
+
+                console.log("editor",editor)
+                remote.current = true;
+                ops.forEach((op:any) => {
+                  editor.apply(op);
+                });
+                remote.current = false;
+                socketchange.current = true
+              }
+          
           return () =>{
               socket.off('new-remote-operations')
           }
         });}, [editor])
+
+
+
 
       return (
         <div
@@ -63,7 +69,7 @@ const editableProps = {
         <Toolbar/>
        </HeadingToolbar>
       <Plate
-        id="1"
+        id={`${id}`}
         onChange={value => {
           setValue(value);
           const ops = editor.operations
@@ -87,7 +93,7 @@ const editableProps = {
           }
           socketchange.current = false;
         }}
-        initialValue={basicNodesInitialValue}
+        initialValue={value}
         editableProps={editableProps}
         components={components}
         options={options}
