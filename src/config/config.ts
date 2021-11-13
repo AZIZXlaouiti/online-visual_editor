@@ -40,66 +40,66 @@ export const createElement = (
 export const basicNodesInitialValue = 
   [
     {
-        "type": "h1",
-        "children": [
+        type: "h1",
+        children: [
             {
-                "text": "🧱 Elements"
+                text: "🧱 Elements"
             }
         ]
     },
     {
-        "type": "h2",
-        "children": [
+        type: "h2",
+        children: [
             {
-                "text": "🔥"
+                text: "🔥"
             },
             {
-                "text": " Basic Elements",
-                "highlight": true
+                text: " Basic Elements",
+                highlight: true
             }
         ]
     },
     {
-        "type": "blockquote",
-        "children": [
+        type: "blockquote",
+        children: [
             {
-                "text": "Blockquote"
+                text: "Blockquote"
             }
         ]
     },
     {
-        "type": "p",
-        "children": [
+        type: "p",
+        children: [
             {
-                "text": "This text is bold."
+                text: "This text is bold."
             }
         ]
     },
     {
-        "type": "p",
-        "children": [
+        type: "p",
+        children: [
             {
-                "text": "This text is italic.",
-                "italic": true
+                text: "This text is italic.",
+                italic: true
             }
         ]
     },
     {
-        "type": "p",
-        "children": [
+        type: "p",
+        children: [
             {
-                "text": "This text is underlined.",
-                "code": true
+                text: "This text is underlined.",
+                code: true
             }
         ]
     },
     {
-        "type": "p",
-        "children": [
+        type: "p",
+        children: [
             {
-                "text": "This text is bold, italic and underlined.",
-                "italic": true,
-                "underline": true
+                text: "This text is bold, italic and underlined.",
+                italic: true,
+                underline: true
             }
         ]
     }

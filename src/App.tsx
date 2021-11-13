@@ -44,9 +44,9 @@ const editableProps = {
           if (id.current !== editorId ) {
             remote.current = true;
             console.log("recieved", ops)
-            ops.forEach((op:any) => {
-              editor.apply(op);
-            });
+            // ops.forEach((op:any) => {
+            //   editor.apply(op);
+            // });
             remote.current = false;
             socketchange.current = true; //variable to track socket changes in editor via operations
           }
@@ -54,6 +54,7 @@ const editableProps = {
               socket.off('new-remote-operations')
           }
         });}, [editor])
+
       return (
         <div
         className="editor container"
