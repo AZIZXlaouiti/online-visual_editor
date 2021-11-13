@@ -7,9 +7,6 @@ import { HeadingToolbar  , Plate} from '@udecode/plate';
 import { basicNodesInitialValue } from './config/config';
 import { useRef , useEffect, useState } from 'react';
 import { usePlateEditorRef } from '@udecode/plate'
-import { useMemo } from 'react';
-import { withReact } from 'slate-react';
-import { createEditor } from 'slate';
 import { Descendant, Operation } from 'slate';
 const socket = io('http://localhost:4000')
 const editableProps = {
@@ -26,11 +23,7 @@ const editableProps = {
     const  App: React.FC =() =>{
   const editor = usePlateEditorRef()
   
-      // const editor = useMemo(() => withReact(createEditor()), []);
-      // const [value, setValue] = useState<Descendant[]>([
-      //     { type: 'paragraph',
-      //      children: [{ text: '' }] 
-      //   }])
+  
       const [value , setValue ] = useState<Descendant[]>(basicNodesInitialValue)
       const id =  useRef(`${Date.now()}`)
       const remote = useRef(false)
