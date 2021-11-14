@@ -1,8 +1,8 @@
-import { port } from "../../globals"
+import { PORT , REDIS_HOST as HOST , REDIS_PORT as PORT} from "../../globals"
 const app = require("express")
 const http = require("http").Server(app)
-const redis = require("socket.io-redis")
-
+const adapter = require("socket.io-redis")
+const port = PORT || 9000
 const io = require("socket.io")(http , {
     cors: {
       origin: "http://localhost:3000",
@@ -80,8 +80,12 @@ let basicNodesInitialValue =
     }
 
   ]
-
-// io.adapter(redis( { host: 'localhost' , port: 6379 }))  
+const redisAdapter = adapter({
+    host: HOST,
+    port: PORT
+})
+io.attach(http)
+io.adapter(redisAdapter)
 io.on('connection', async(socket) => {
     io.emit("init-value", basicNodesInitialValue)
     socket.on('new-operations', (data) => {

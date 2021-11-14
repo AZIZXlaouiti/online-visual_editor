@@ -1,3 +1,3 @@
-export const redis_port:string = process.env.REDIS_PORT
-export const redis_host:string = process.env.REDIS_HOST
-export const port:string = process.env.PORT
+export const REDIS_PORT:string = process.env.REDIS_PORT
+export const REDIS_HOST:string = process.env.REDIS_HOST
+export const PORT:string = process.env.PORT
