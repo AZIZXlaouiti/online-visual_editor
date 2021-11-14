@@ -1,8 +1,9 @@
-import { PORT , REDIS_HOST  , REDIS_PORT } from "../../globals"
+// import { Server } from 'socket.io';
+// import { createAdapter } from '@socket.io/redis-adapter';
+// import { RedisClient } from 'redis';
 const app = require("express")
 const http = require("http").Server(app)
 const redis = require("socket.io-redis")
-const port = PORT || 9000
 const io = require("socket.io")(http , {
     cors: {
       origin: "http://localhost:3000",
@@ -11,8 +12,16 @@ const io = require("socket.io")(http , {
       credentials: true
     }
   })
-  
-let basicNodesInitialValue = 
+// const pubClient = new RedisClient({ host: 'localhost', port: 6379 });
+// const subClient = pubClient.duplicate();
+
+// io.adapter(createAdapter(pubClient, subClient));
+interface Adapter {
+   host: string,
+   port: number
+
+}
+const InitialValue = 
   [
     {
         type: "h1",
@@ -21,81 +30,21 @@ let basicNodesInitialValue =
                 text: "🧱 Elements"
             }
         ]
-    },
-    {
-        type: "h2",
-        children: [
-            {
-                text: "🔥"
-            },
-            {
-                text: " Basic Elements",
-                highlight: true
-            }
-        ]
-    },
-    {
-        type: "blockquote",
-        children: [
-            {
-                text: "Blockquote"
-            }
-        ]
-    },
-    {
-        type: "p",
-        children: [
-            {
-                text: "This text is bold."
-            }
-        ]
-    },
-    {
-        type: "p",
-        children: [
-            {
-                text: "This text is italic.",
-                italic: true
-            }
-        ]
-    },
-    {
-        type: "p",
-        children: [
-            {
-                text: "This text is underlined.",
-                code: true
-            }
-        ]
-    },
-    {
-        type: "p",
-        children: [
-            {
-                text: "This text is bold, italic and underlined.",
-                italic: true,
-                underline: true
-            }
-        ]
     }
+  ]  
 
-  ]
-interface Adapter {
-   host: string,
-   port: number
 
+const pubClient = <Adapter>{
+    host : process.env.REDIS_HOST,
+    port : 6379
 }
-const adapter = <Adapter>{
-    host : REDIS_HOST,
-    port : parseInt(REDIS_PORT)
-}
-const foo = redis(adapter)
+const foo = redis(pubClient)
 io.attach(http)
 io.adapter(foo)
-io.on('connection', async(socket) => {
-    io.emit("init-value", basicNodesInitialValue)
-    socket.on('new-operations', (data) => {
-       basicNodesInitialValue = data
+io.on('connection', async(socket: any) => {
+    io.emit("init-value", InitialValue)
+    socket.on('new-operations', (data:any) => {
+      //  basicNodesInitialValue = data
        io.emit('new-remote-operations', data);
     });
 });
@@ -104,4 +53,4 @@ io.on('connection', async(socket) => {
 http.listen(4000 , async()=>{
     console.log("listening on *:4000")
 })
-
+console.log("hello")
