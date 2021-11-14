@@ -1,7 +1,8 @@
-// import { basicNodesInitialValue } from "../../src/config/config";
+import { port } from "../../globals"
 const app = require("express")
 const http = require("http").Server(app)
 const redis = require("socket.io-redis")
+
 const io = require("socket.io")(http , {
     cors: {
       origin: "http://localhost:3000",
@@ -79,7 +80,8 @@ let basicNodesInitialValue =
     }
 
   ]
-io.adapter(redis( { host: 'localhost' , port: 6379 }))  
+
+// io.adapter(redis( { host: 'localhost' , port: 6379 }))  
 io.on('connection', async(socket) => {
     io.emit("init-value", basicNodesInitialValue)
     socket.on('new-operations', (data) => {
