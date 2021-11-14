@@ -1,5 +1,7 @@
+// import { basicNodesInitialValue } from "../../src/config/config";
 const app = require("express")
 const http = require("http").Server(app)
+const redis = require("socket.io-redis")
 const io = require("socket.io")(http , {
     cors: {
       origin: "http://localhost:3000",
@@ -8,10 +10,81 @@ const io = require("socket.io")(http , {
       credentials: true
     }
   })
+  
+let basicNodesInitialValue = 
+  [
+    {
+        type: "h1",
+        children: [
+            {
+                text: "🧱 Elements"
+            }
+        ]
+    },
+    {
+        type: "h2",
+        children: [
+            {
+                text: "🔥"
+            },
+            {
+                text: " Basic Elements",
+                highlight: true
+            }
+        ]
+    },
+    {
+        type: "blockquote",
+        children: [
+            {
+                text: "Blockquote"
+            }
+        ]
+    },
+    {
+        type: "p",
+        children: [
+            {
+                text: "This text is bold."
+            }
+        ]
+    },
+    {
+        type: "p",
+        children: [
+            {
+                text: "This text is italic.",
+                italic: true
+            }
+        ]
+    },
+    {
+        type: "p",
+        children: [
+            {
+                text: "This text is underlined.",
+                code: true
+            }
+        ]
+    },
+    {
+        type: "p",
+        children: [
+            {
+                text: "This text is bold, italic and underlined.",
+                italic: true,
+                underline: true
+            }
+        ]
+    }
+
+  ]
+io.adapter(redis( { host: 'localhost' , port: 6379 }))  
 io.on('connection', async(socket) => {
-    console.log("user connected")
-    socket.on('new-operations', (msg) => {
-    socket.broadcast.emit('new-remote-operations', msg);
+    io.emit("init-value", basicNodesInitialValue)
+    socket.on('new-operations', (data) => {
+       basicNodesInitialValue = data
+       io.emit('new-remote-operations', data);
     });
 });
 
@@ -19,3 +92,4 @@ io.on('connection', async(socket) => {
 http.listen(4000 , async()=>{
     console.log("listening on *:4000")
 })
+
