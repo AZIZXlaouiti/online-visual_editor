@@ -13,7 +13,8 @@ while learning TypeScript
 - ReactJs
 - Redis
 # Getting Started 
-- `yarn start` to start react server
-- cd into /server then run `node src/index.js` to start the WebSocket
+- at your root directory run `yarn start` to start react server
+- run `redis-server` to open redis server
+- cd into /server then run `yarn start` to start the WebSocket connection
 # Authors
 This project was fully designed by myself, feel free to reach out to me via azizrocke@gmail.com if you have any questions .
