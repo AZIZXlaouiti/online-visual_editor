@@ -2,8 +2,8 @@
 An interactive platform based around collaborative work between different users using a visual editor
 
 # Description
-using WebSocket Architecture to create Live Interaction between different clients with onTime response enabling simultaneous and bidirectional communication, allowing both client and server to send messages at any time through the channel. this an attempt of me trying to experiment with different sockets' technologies
-and learning TypeScript
+using WebSocket Architecture to create Live Interaction between different clients with onTime response enabling simultaneous and bidirectional communication, allowing both client and server to send messages at any time through the channel. this is an attempt of me trying to experiment with different sockets technologies
+while learning TypeScript
 
 # Technologies 
 - socket.io
@@ -11,6 +11,7 @@ and learning TypeScript
 - node.js
 - TypeScript
 - ReactJs
+- Redis
 # Getting Started 
 - `yarn start` to start react server
 - cd into /server then run `node src/index.js` to start the WebSocket
