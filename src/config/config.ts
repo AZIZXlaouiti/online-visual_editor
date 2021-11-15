@@ -1,5 +1,4 @@
 import { createBlockquotePlugin, createBoldPlugin, createCodeBlockPlugin, createCodePlugin, createHeadingPlugin, createHighlightPlugin, createItalicPlugin, createParagraphPlugin, createReactPlugin, createStrikethroughPlugin, createUnderlinePlugin, ELEMENT_PARAGRAPH } from '@udecode/plate'
-import { ELEMENT_H1, MARK_STRIKETHROUGH, MARK_UNDERLINE, MARK_CODE, ELEMENT_H2, MARK_BOLD, MARK_ITALIC, ELEMENT_BLOCKQUOTE } from '@udecode/plate'
 
 export const basicNodesPlugins = [
     // editor
