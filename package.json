@@ -10,8 +10,9 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@types/express": "^4.17.13",
     "@types/jest": "^26.0.15",
-    "@types/node": "^12.0.0",
+    "@types/node": "^16.11.10",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/socket.io": "^3.0.2",
@@ -19,6 +20,7 @@
     "@udecode/plate": "^7.0.3",
     "@udecode/plate-basic-marks": "^7.0.2",
     "dotenv": "^10.0.0",
+    "express": "^4.17.1",
     "ioredis": "^4.28.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -33,15 +35,15 @@
     "socket.io-client": "^4.3.2",
     "socket.io-redis": "^6.1.1",
     "styled-components": "^5.3.3",
+    "ts-node": "^10.4.0",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-  
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start": "react-scripts --openssl-legacy-provider start",
-    "build": "react-scripts --openssl-legacy-provider build"
+    "start": "react-scripts start",
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [
