@@ -1,42 +1,29 @@
-import { createBlockquotePlugin, createBoldPlugin, createCodeBlockPlugin, createCodePlugin, createHeadingPlugin, createHighlightPlugin, createItalicPlugin, createParagraphPlugin, createReactPlugin, createStrikethroughPlugin, createUnderlinePlugin, ELEMENT_PARAGRAPH } from '@udecode/plate'
-
-export const basicNodesPlugins = [
-    // editor
-    createReactPlugin(),
-    createHighlightPlugin(),
-    // elements
-    createParagraphPlugin(),      // paragraph element
-    createBlockquotePlugin(),     // blockquote element
-    createCodeBlockPlugin(),      // code block element
-    createHeadingPlugin(),        // heading elements
-    // marks
-    createBoldPlugin(),           // bold mark
-    createItalicPlugin(),         // italic mark
-    createUnderlinePlugin(),      // underline mark
-    createStrikethroughPlugin(),  // strikethrough mark
-    createCodePlugin()            // code mark
-]
-export const createElement = (
-    text = '',
-    {
-        type = ELEMENT_PARAGRAPH,
-    }: {
-        type?: string;
-        mark?: string;
-    } = {}
-) => {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.basicNodesInitialValue = exports.createElement = exports.basicNodesPlugins = void 0;
+const plate_1 = require("@udecode/plate");
+exports.basicNodesPlugins = [
+    (0, plate_1.createReactPlugin)(),
+    (0, plate_1.createHighlightPlugin)(),
+    (0, plate_1.createParagraphPlugin)(),
+    (0, plate_1.createBlockquotePlugin)(),
+    (0, plate_1.createCodeBlockPlugin)(),
+    (0, plate_1.createHeadingPlugin)(),
+    (0, plate_1.createBoldPlugin)(),
+    (0, plate_1.createItalicPlugin)(),
+    (0, plate_1.createUnderlinePlugin)(),
+    (0, plate_1.createStrikethroughPlugin)(),
+    (0, plate_1.createCodePlugin)()
+];
+const createElement = (text = '', { type = plate_1.ELEMENT_PARAGRAPH, } = {}) => {
     const leaf = { text };
-    // if (mark) {
-    // leaf[mark] = true;
-    //   }
-
     return {
         type,
         children: [leaf],
     };
-};  
-export const basicNodesInitialValue = 
-  [
+};
+exports.createElement = createElement;
+exports.basicNodesInitialValue = [
     {
         type: "h1",
         children: [
@@ -101,5 +88,5 @@ export const basicNodesInitialValue =
             }
         ]
     }
-
-  ]
+];
+//# sourceMappingURL=config.js.map
