@@ -21,4 +21,4 @@ to start react server
 # Authors
 This project was fully designed by myself, feel free to reach out to me via azizrocke@gmail.com if you have any questions .
 ![Uploading image-m8-c-90-transformed.jpeg…]()
-![image-m8-c-128](https://github.com/AZIZXlaouiti/online-visual_editor/assets/79036942/c70151a6-8534-4d2f-82e5-531ba1b09920)
+
