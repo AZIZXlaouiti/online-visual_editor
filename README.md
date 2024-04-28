@@ -20,5 +20,5 @@ to start react server
 - cd into /server then run ```yarn socket-run``` to start the WebSocket connection
 # Authors
 This project was fully designed by myself, feel free to reach out to me via azizrocke@gmail.com if you have any questions .
-![Uploading image-m8-c-90-transformed.jpeg…]()
+
 
